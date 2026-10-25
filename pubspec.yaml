@@ -1,0 +1,24 @@
+name: reach
+description: >-
+  Finds the tests a change can reach through the import graph, so CI runs
+  those instead of the whole suite, and reports which files reach the most
+  tests.
+version: 0.1.0
+publish_to: none
+repository: https://github.com/sm-merlot/reach
+
+environment:
+  sdk: ^3.5.0
+
+executables:
+  reach: reach
+
+dependencies:
+  args: ^2.7.0
+  glob: ^2.1.2
+  path: ^1.9.0
+  yaml: ^3.1.2
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.0
