@@ -132,7 +132,8 @@ Future<int> run(List<String> argv) async {
       stderr.writeln('reach: no results at ${file.path}');
       return 2;
     }
-    final failed = failedTestFiles(file.readAsStringSync(), root: root);
+    final failed = failedTestFiles(file.readAsStringSync(),
+        root: root, knownTests: graph.tests);
     final skipped = selection.mode == Mode.full
         ? <String>{}
         : failed.difference(selection.tests.toSet());

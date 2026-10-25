@@ -65,4 +65,26 @@ void main() {
       'test/throw_test.dart'
     });
   });
+
+  test('results from another checkout map to the known test file', () {
+    final out = _events([
+      {
+        'type': 'suite',
+        'suite': {
+          'id': 1,
+          'path': '/home/runner/_work/App/App/test/widgets/a_test.dart'
+        }
+      },
+      {
+        'type': 'testStart',
+        'test': {'id': 2, 'suiteID': 1}
+      },
+      {'type': 'testDone', 'testID': 2, 'result': 'failure'},
+    ]);
+    expect(
+        failedTestFiles(out,
+            root: '/home/runner/work/App/App',
+            knownTests: ['test/a_test.dart', 'test/widgets/a_test.dart']),
+        {'test/widgets/a_test.dart'});
+  });
 }
